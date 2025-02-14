@@ -97,16 +97,18 @@ public:
         }
         if (index == 0) {
             delfirst();
+            return;
         }
         if (index == length - 1) {
             dellast();
+            return;
         }
 
-        Node<T> *delNode = get(index);
-        Node<T> *temp = get(index - 1);
-        Node<T> *nextNode = temp->next->next;
-        temp->next = nextNode;
-        delete delNode;
+            Node<T> *delNode = get(index);
+            Node<T> *temp = get(index - 1);
+            Node<T> *nextNode = temp->next->next;
+            temp->next = nextNode;
+            delete delNode;
 
         length--;
     }
@@ -161,12 +163,14 @@ int main() {
     student *s1 = new student("A", 20);
     student *s2 = new student("B", 21);
     student *s3 = new student("C", 22);
+    student *s4 = new student("D", 22);
+    student *s5 = new student("E", 22);
     LinkedList<student> *ll = new LinkedList<student>(s1);
     ll->add(s2);
     ll->add(s3);
+    ll->add(s4);
+    ll->add(s5);
     ll->print();
-    ll->reverselist();
-    ll->print();
-    ll->deleteNode(1);
+    ll->deleteNode(0);
     ll->print();
 }
