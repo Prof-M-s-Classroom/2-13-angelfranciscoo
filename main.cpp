@@ -92,6 +92,23 @@ public:
 
     void deleteNode(int index) {
        //TODO:Write the function to delete at the given index. Reuse the pre-written functions for edge cases. Account for missing index.
+        if (index < 0 || index >= length) {
+            cout << "Index out of bounds" << endl;
+        }
+        if (index == 0) {
+            delfirst();
+        }
+        if (index == length - 1) {
+            dellast();
+        }
+
+        Node<T> *delNode = get(index);
+        Node<T> *temp = get(index - 1);
+        Node<T> *nextNode = temp->next->next;
+        temp->next = nextNode;
+        delete delNode;
+
+        length--;
     }
 
    void insert(int index, T *value) {
@@ -110,6 +127,7 @@ public:
         Node<T> *temp = get(index - 1);
         newNode->next = temp->next;
         temp->next = newNode;
+        length++;
 
         cout << "Node inserted at index " << index << "." << endl;
     }
@@ -148,5 +166,7 @@ int main() {
     ll->add(s3);
     ll->print();
     ll->reverselist();
+    ll->print();
+    ll->deleteNode(1);
     ll->print();
 }
